@@ -7,11 +7,11 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    graph* g = new graph("A,B,C");
+    graph* g = new graph("A,B,C,D,E,F,G,H,I,J");
     GraphWidget *widget = new GraphWidget;
     QObject::connect(g,&graph::matrixCreated,widget,&GraphWidget::createFromMatrix);
-    g->makeInfectionMatrixFromString("A,B");
-    g->fillMatrixFromString("A->B,A->C,B->A,B->C,C->A,C->B");
+    g->makeInfectionMatrixFromString("A,B,C,D,E,F,G,H,I,J");
+    g->fillMatrixFromString("A->B,A->C,B->A,B->D,C->A,C->D,C->E,D->B,D->C,D->E,D->F,E->C,E->D,E->G,F->D,F->G,F->H,G->E,G->F,G->H,H->F,H->G,H->I,I->H,I->J,J->I");
 
     MainWindow w;
 

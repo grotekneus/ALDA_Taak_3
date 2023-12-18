@@ -67,14 +67,13 @@ vector<char> graph::findSource1(int days)
 
 vector<vector<int>> graph::matrixMultiply(const vector<vector<int>> A, const vector<vector<int>> B) {
     int m = A.size();
-    int n = A[0].size();
-    int p = B[0].size();
 
-    vector<vector<int>> result(m, vector<int>(p, 0));
+
+    vector<vector<int>> result(m, vector<int>(m, 0));
 
     for (int i = 0; i < m; ++i) {
-        for (int j = 0; j < p; ++j) {
-            for (int k = 0; k < n; ++k) {
+        for (int j = 0; j < m; ++j) {
+            for (int k = 0; k < m; ++k) {
                 result[i][j] += A[i][k] * B[k][j];
             }
         }
