@@ -3,6 +3,7 @@
 
 #include <qobject.h>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
@@ -19,6 +20,7 @@ public:
     void makeInfectionMatrixFromString(std::string s);
     vector<vector<int> > matrixMultiply(const vector<vector<int> > A, const vector<vector<int> > B);
     vector<char> findSource1(int days);
+    unordered_set<char> findSourcesBFS(int days);
 signals:
     void matrixCreated(vector<vector<int>> adjacencymatrix,vector<char> infected);
 private:
@@ -27,7 +29,9 @@ private:
     }Node;
     vector<vector<int>> adjacencyMatrix;
     vector<vector<int>> infectionMatrix;
+    unordered_map<char, vector<char>> adjacencyListBFS;
     vector<char> infected;
+    vector<char> infectedBFS;
 
 };
 

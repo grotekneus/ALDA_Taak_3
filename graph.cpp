@@ -1,5 +1,7 @@
 #include "graph.h"
 #include <iostream>
+#include <queue>
+#include <unordered_set>
 
 graph::graph(std::string s) {
     int size = (s.length()+1)/2;
@@ -83,3 +85,44 @@ vector<vector<int>> graph::matrixMultiply(const vector<vector<int>> A, const vec
     return result;
 }
 
+unordered_set<char> graph::findSourcesBFS(int days) {
+    unordered_set<char> sources;
+    unordered_set<char> visited;
+    queue<pair<char, int>> q;
+
+    for (char infectedNode : infected) {
+        q.push({infectedNode, 0});
+    }
+
+    while (!q.empty()) {
+        char node = q.front().first;
+        int day = q.front().second;
+        q.pop();
+
+        if (day <= days && visited.find(node) == visited.end()) {
+            visited.insert(node);
+
+            if (day == days) {
+                sources.insert(node);
+            }
+
+            if (day < days) {
+                for (int neighbor = 0; neighbor < adjacencyMatrix.size(); ++neighbor) {
+                    if (adjacencyMatrix[node - 'A'][neighbor] != 0) {
+                        q.push({static_cast<char>(neighbor + 'A'), day + 1});
+                    }
+                }
+            }
+        }
+    }
+
+    // Controleren of alle geïnfecteerde knooppunten binnen 'days' zijn bezocht
+    for (char infectedNode : infected) {
+        if (visited.find(infectedNode) == visited.end()) {
+            sources.clear(); // Geen geldige bronnen als een geïnfecteerd knooppunt niet is bezocht
+            break;
+        }
+    }
+
+    return sources;
+}
