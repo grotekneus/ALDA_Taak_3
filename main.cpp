@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     }
 
     secondGraph secGraph;
+    /*
     secGraph.addEdge('A', 'B');
     secGraph.addEdge('A', 'C');
     secGraph.addEdge('B', 'D');
@@ -37,6 +38,29 @@ int main(int argc, char *argv[])
     secGraph.addEdge('D', 'E');
 
     unordered_set<char> infectedNodes = {'B', 'C', 'D'};
+    */
+
+    secGraph.addEdge('A', 'B');
+    secGraph.addEdge('A', 'C');
+    secGraph.addEdge('A', 'D');
+    secGraph.addEdge('B', 'E');
+    secGraph.addEdge('C', 'F');
+    secGraph.addEdge('C', 'G');
+    secGraph.addEdge('D', 'H');
+    secGraph.addEdge('E', 'I');
+    secGraph.addEdge('F', 'J');
+    secGraph.addEdge('G', 'K');
+    secGraph.addEdge('H', 'L');
+    secGraph.addEdge('I', 'M');
+    secGraph.addEdge('J', 'N');
+    secGraph.addEdge('K', 'O');
+    secGraph.addEdge('L', 'P');
+    secGraph.addEdge('M', 'P');
+    secGraph.addEdge('N', 'P');
+    secGraph.addEdge('O', 'P');
+
+    unordered_set<char> infectedNodes = {'A', 'D'};
+
     int daysPassed = 2;
 
     unordered_set<char> sources = secGraph.findSourcesBFS(infectedNodes, daysPassed);
