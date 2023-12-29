@@ -36,18 +36,18 @@ std::unordered_set<char> secondGraph::findSourcesBFS(const std::unordered_set<ch
             if (day <= days && visited.find(node) == visited.end()) {
                 visited.insert(node);
 
-                if (day == days) {
-                    sources.insert(node);
-                }
-
                 if (day < days) {
                     for (char neighbor : adjacencyList[node]) {
                         q.push({neighbor, day + 1});
                     }
                 }
+                if (day == days) {
+                    sources.insert(infectedNode);
+                }
             }
         }
     }
+
 
     return sources;
 }

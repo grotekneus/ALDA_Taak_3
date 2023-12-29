@@ -32,6 +32,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         edge.h
         edge.cpp
         secondgraph.h secondgraph.cpp
+        thirdgraph.h thirdgraph.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET ALDA_Taak3 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
