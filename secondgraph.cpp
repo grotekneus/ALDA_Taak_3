@@ -19,13 +19,24 @@ void secondGraph::addEdge(char source, char destination)
     }
 }
 
+/*
+ * De tijdscomplexiteit van het Breadth First Search algoritme is:
+ *   - in de for loop worden alle infected vertices overlopen, we noemen deze V
+ *   - binnen de for loop worden alle buren van de vertices bezocht,
+ *     het doorlopen van alle buren heeft een tijdscomplexiteit van O(E)
+ *     E is het aantel edges in de graaf
+ *   - het markeren van een vertice als visited heeft een tijdscomplexiteit van O(1),
+ *     omdat we werken met een unordered map.
+ * De totale tijdscomplexiteit van dit algoritme is dan O(V + E + 1) wat vereenvoudigd naar O(V + E),
+ *   met V het aantal infected vertices en E het aantal edges in de graaf.
+*/
 std::unordered_set<char> secondGraph::findSourcesBFS(const std::unordered_set<char> &infectedNodes, int days)
 {
     unordered_set<char> sources;
+    unordered_set<char> visited;
+    queue<pair<char, int>> q;
 
     for (char infectedNode : infectedNodes) {
-        unordered_set<char> visited;
-        queue<pair<char, int>> q;
         q.push({infectedNode, 0});
 
         while (!q.empty()) {
